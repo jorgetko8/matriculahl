@@ -34,7 +34,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="<?=base_url?>usuario/registrar" method="POST">
+              <form role="form" action="<?=base_url?>administrativo/registrar" method="POST">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="nombres">Nombres:</label>

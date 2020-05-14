@@ -3,14 +3,15 @@
 class Usuario{
     
     private $id;
-    private $persona_dni;
+    private $documento_identidad;
     private $usuario;
     private $password;
     private $privilegio;
     private $estado;
+    private $foto;
     private $db;
     
-    function __construct() {
+    public function __construct(){
         $this->db = Database::conexion();
     }
     
@@ -18,8 +19,8 @@ class Usuario{
         return $this->id;
     }
 
-    function getPersona_dni() {
-        return $this->persona_dni;
+    function getDocumento_identidad() {
+        return $this->documento_identidad;
     }
 
     function getUsuario() {
@@ -27,7 +28,7 @@ class Usuario{
     }
 
     function getPassword() {
-        return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
+        return $this->password;
     }
 
     function getPrivilegio() {
@@ -38,12 +39,16 @@ class Usuario{
         return $this->estado;
     }
 
+    function getFoto() {
+        return $this->foto;
+    }
+
     function setId($id) {
         $this->id = $id;
     }
 
-    function setPersona_dni($persona_dni) {
-        $this->persona_dni = $persona_dni;
+    function setDocumento_identidad($documento_identidad) {
+        $this->documento_identidad = $documento_identidad;
     }
 
     function setUsuario($usuario) {
@@ -62,18 +67,10 @@ class Usuario{
         $this->estado = $estado;
     }
 
-    public function registrarUsuario(){
-        
-        $sql = "INSERT INTO usuarios VALUES(null, {$this->getPersona_dni()}, '{$this->getUsuario()}', '{$this->getPassword()}', {$this->getPrivilegio()}, {$this->getEstado()});";
-        $save = $this->db->query($sql);
-        
-        $result = false;
-        if($save){
-            $result = true;
-        }
-        
-        return $result;
+    function setFoto($foto) {
+        $this->foto = $foto;
     }
+    
     
     
 }

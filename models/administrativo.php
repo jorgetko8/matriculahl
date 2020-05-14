@@ -3,12 +3,11 @@
 class Administrativo{
     
     private $id;
-    private $correo;
-    private $celular;
-    private $persona_dni;
+    private $apoderado_doc;
+    private $estudiante_doc;
     private $db;
     
-    public function __construct() {
+    public function __construct(){
         $this->db = Database::conexion();
     }
     
@@ -16,47 +15,26 @@ class Administrativo{
         return $this->id;
     }
 
-    function getCorreo() {
-        return $this->correo;
+    function getApoderado_doc() {
+        return $this->apoderado_doc;
     }
 
-    function getCelular() {
-        return $this->celular;
-    }
-
-    function getPersona_dni() {
-        return $this->persona_dni;
+    function getEstudiante_doc() {
+        return $this->estudiante_doc;
     }
 
     function setId($id) {
         $this->id = $id;
     }
 
-    function setCorreo($correo) {
-        $this->correo = $correo;
+    function setApoderado_doc($apoderado_doc) {
+        $this->apoderado_doc = $apoderado_doc;
     }
 
-    function setCelular($celular) {
-        $this->celular = $celular;
+    function setEstudiante_doc($estudiante_doc) {
+        $this->estudiante_doc = $estudiante_doc;
     }
-
-    function setPersona_dni($persona_dni) {
-        $this->persona_dni = $persona_dni;
-    }
-
-    public function registrarAdministrativo(){
-        
-        $sql = "INSERT INTO administrativos VALUES({$this->getId()}, '{$this->getCorreo()}', '{$this->getCelular()}', {$this->getPersona_dni()});";
-        
-        $save = $this->db->query($sql);
-        $result = false;
-        
-        if($save){
-            $result = true;
-        }
-        
-        return $result;
-        
-    }
+    
+    
     
 }
