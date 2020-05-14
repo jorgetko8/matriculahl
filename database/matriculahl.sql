@@ -170,6 +170,7 @@ ape_paterno varchar(20),
 ape_materno varchar(20),
 correo varchar(100),
 celular varchar(10),
+fecha_nac date,
 CONSTRAINT pk_administrativos PRIMARY KEY(documento_identidad)
 )Engine=InnoDB;
 

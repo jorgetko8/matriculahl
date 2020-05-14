@@ -19,20 +19,16 @@ class AdministrativoController{
         $nombres = isset($_POST['nombres'])? $_POST['nombres'] : false;
         $ape_paterno = isset($_POST['apepaterno'])? $_POST['apepaterno'] : false;
         $ape_materno = isset($_POST['apematerno'])? $_POST['apematerno'] : false;
-        $dni = isset($_POST['dni'])? $_POST['dni'] : false;
-        $direccion = isset($_POST['direccion'])? $_POST['direccion'] : false;
-        $distrito = isset($_POST['distrito'])? $_POST['distrito'] : false;
+        $tipo_documento = isset($_POST['tipo_documento'])? $_POST['tipo_documento'] : false;
+        $documento_identidad = isset($_POST['documento_identidad'])? $_POST['documento_identidad'] : false;
         $celular = isset($_POST['celular'])? $_POST['celular'] : false;
         $correo = isset($_POST['correo'])? $_POST['correo'] : false;
         
-        $fecha_nac_original = isset($_POST['fechanac'])? $_POST['fechanac'] : false;
         
-        
-        if($nombres && $ape_paterno && $ape_materno && $dni && $direccion && $distrito && $celular && $correo && $fecha_nac_original){
+        if($nombres && $ape_paterno && $ape_materno && $tipo_documento && $documento_identidad && $celular && $correo){
             
-            $fecha_nac = date("Y-m-d", strtotime($fecha_nac_original));
-            $tipo = "administrativo";
-            $usuario = "a".$dni;
+            $usuario_documento_identidad = $documento_identidad;
+            $usuario = $documento_identidad;
             
             $yearnac = date("Y", strtotime($fecha_nac_original));
 
