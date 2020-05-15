@@ -133,21 +133,7 @@ class Estudiante{
     function setTipo_discapacidad($tipo_discapacidad) {
         $this->tipo_discapacidad = $tipo_discapacidad;
     }
-
-
-    public function registrarPersona(){
-        
-        $sql = "INSERT INTO personas VALUES({$this->getDni()}, '{$this->getNombres()}', '{$this->getApe_paterno()}', "
-        . "'{$this->getApe_materno()}', '{$this->getDireccion()}', '{$this->getDistrito()}', '{$this->getFecha_nac()}', '{$this->getTipo()}');";
-        
-        $save = $this->db->query($sql);
-        
-        $result = false;
-        if($save){
-            $result = true;
-        }
-        
-        return $result;
-    }
+    
+    
     
 }

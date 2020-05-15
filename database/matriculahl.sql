@@ -107,7 +107,7 @@ CREATE DATABASE matriculahl;
 USE matriculahl;
 
 CREATE TABLE estudiantes(
-documento_identidad int(13) not null,
+documento_identidad varchar(13) not null,
 tipo_documento varchar(30) not null,
 nombres varchar(50) not null,
 ape_paterno varchar(20),
@@ -126,19 +126,19 @@ CONSTRAINT pk_estudiantes PRIMARY KEY(documento_identidad)
 
 CREATE TABLE estudiantes_domicilios(
 id int(20) auto_increment not null,
-estudiante_doc int(13) not null,
+estudiante_doc varchar(13) not null,
 direccion varchar(100) not null,
 lugar varchar(50),
 departamento varchar(50),
 provincia varchar(50),
 distrito varchar(50),
-telefono varchar(9),
+telefono varchar(11),
 CONSTRAINT pk_estudiantes_domicilios PRIMARY KEY(id),
 CONSTRAINT fk_estudiantes_domicilios FOREIGN KEY(estudiante_doc) REFERENCES estudiantes(documento_identidad)
 )Engine=InnoDB;
 
 CREATE TABLE apoderados(
-documento_identidad int(13) not null,
+documento_identidad varchar(13) not null,
 tipo_documento varchar(30) not null,
 nombres varchar(50) not null,
 ape_paterno varchar(20),
@@ -149,34 +149,34 @@ ocupacion varchar(30),
 vive_con_estudiante varchar(2),
 religion varchar(30),
 correo varchar(100),
-celular varchar(10),
+celular varchar(11),
 CONSTRAINT pk_apoderados PRIMARY KEY(documento_identidad)
 )Engine=InnoDB;
 
 CREATE TABLE lineas_apoderados(
 id int(20) auto_increment not null,
-apoderado_doc int(13) not null,
-estudiante_doc int(13) not null,
+apoderado_doc varchar(13) not null,
+estudiante_doc varchar(13) not null,
 CONSTRAINT pk_lineas_apoderados PRIMARY KEY(id),
 CONSTRAINT fk_lineas_apoderados FOREIGN KEY(apoderado_doc) REFERENCES apoderados(documento_identidad),
 CONSTRAINT fk_lineas_estudiantes FOREIGN KEY(estudiante_doc) REFERENCES estudiantes(documento_identidad)
 )Engine=InnoDB;
 
 CREATE TABLE administrativos(
-documento_identidad int(13) not null,
+documento_identidad varchar(13) not null,
 tipo_documento varchar(30) not null,
 nombres varchar(50) not null,
 ape_paterno varchar(20),
 ape_materno varchar(20),
 correo varchar(100),
-celular varchar(10),
+celular varchar(11),
 fecha_nac date,
 CONSTRAINT pk_administrativos PRIMARY KEY(documento_identidad)
 )Engine=InnoDB;
 
 CREATE TABLE usuarios(
 id int(10) auto_increment not null,
-documento_identidad int(13) not null,
+documento_identidad varchar(13) not null,
 usuario varchar(10) not null,
 password varchar(10) not null,
 privilegio int(1) not null,

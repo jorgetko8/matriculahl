@@ -80,6 +80,18 @@ class Administrativo{
         $this->fecha_nac = $fecha_nac;
     }
 
-    
+    public function registrarAdministrativo(){
+        
+        $sql = "INSERT INTO administrativos VALUES('{$this->getDocumento_identidad()}', '{$this->getTipo_documento()}', '{$this->getNombres()}', "
+        . "'{$this->getApe_paterno()}', '{$this->getApe_materno()}', '{$this->getCorreo()}', '{$this->getCelular()}', '{$this->getFecha_nac()}');";
+        
+        $save = $this->db->query($sql);
+        $result = false;
+        if($save){
+            $result = true;
+        }
+        
+        return $result;
+    }
     
 }

@@ -3,6 +3,7 @@
     require_once 'autoload.php';
     require_once 'config/db.php';
     require_once 'config/parameters.php';
+    require_once 'helpers/helpers.php';
 
     // ucfirst() : Combierte a mayuscula el primer caracter del string
 function showError(){

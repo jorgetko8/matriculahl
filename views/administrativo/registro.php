@@ -35,19 +35,47 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" action="<?=base_url?>administrativo/registrar" method="POST">
+                    <?php if(isset($_SESSION['completed'])): ?>
+                        <div id="mensaje_completado">
+                            <div><?= $_SESSION['completed'] ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(isset($_SESSION['failed'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['failed'] ?></div>
+                        </div>
+                    <?php endif; ?>
                   <div class="card-body">
                     <div class="form-group">
                       <label for="nombres">Nombres:</label>
                       <input type="text" class="form-control" name="nombres" placeholder="Ingresa sus nombres">
+                    <?php if(isset($_SESSION['error']['nombre'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['nombre'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+                      
                     <div class="form-group">
-                      <label for="apepaterno">Apellidos Paterno:</label>
-                      <input type="text" class="form-control" name="apepaterno" placeholder="Ingrese su apellido paterno">
+                      <label for="ape_paterno">Apellidos Paterno:</label>
+                      <input type="text" class="form-control" name="ape_paterno" placeholder="Ingrese su apellido paterno">
+                    <?php if(isset($_SESSION['error']['ape_paterno'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['ape_paterno'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+                      
                     <div class="form-group">
-                      <label for="apematerno">Apellidos Materno:</label>
-                      <input type="text" class="form-control" name="apematerno" placeholder="Ingrese su apellido materno">
+                      <label for="ape_materno">Apellidos Materno:</label>
+                      <input type="text" class="form-control" name="ape_materno" placeholder="Ingrese su apellido materno">
+                    <?php if(isset($_SESSION['error']['ape_materno'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['ape_materno'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+                      
                     <div class="form-group">
                           <label for="tipo_documento">Tipo de Documento:</label>
                           <select class="custom-select" name="tipo_documento">
@@ -56,14 +84,22 @@
                             <option value="OTRO">OTRO</option>
                           </select>
                     </div>
+                      
                     <div class="form-group">
                       <label for="documento_identidad">N° Documento:</label>
                       <input type="text" class="form-control" name="documento_identidad" placeholder="Ingrese numero de documento">
+                    <?php if(isset($_SESSION['error']['documento_identidad'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['documento_identidad'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+                      
                     <div class="form-group">
                       <label for="tipo">Tipo:</label>
                       <input type="text" class="form-control" name="tipo" value="Administrativo" disabled="disabled">
                     </div>
+                      
   <!--                  <div class="form-group">
                       <label for="direccion">Dirección:</label>
                       <input type="text" class="form-control" name="direccion" placeholder="Ingrese su dirección">
@@ -75,20 +111,38 @@
                     <div class="form-group">
                       <label for="celular">Celular:</label>
                       <input type="text" class="form-control" id="telefono" name="celular" placeholder="Ingrese su celular">
+                    <?php if(isset($_SESSION['error']['celular'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['celular'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+  
                     <div class="form-group">
                       <label for="correo">Correo:</label>
                       <input type="email" class="form-control" name="correo" placeholder="Ingrese su correo">
+                    <?php if(isset($_SESSION['error']['correo'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['correo'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+  
                     <div class="form-group">
-                      <label for="fechanac">Fecha de nacimiento:</label>
+                      <label for="fecha_nac">Fecha de nacimiento:</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                         </div>
-                        <input type="date" class="form-control" name="fechanac" placeholder="Enter email">
+                        <input type="date" class="form-control" name="fecha_nac" placeholder="Ingrese una fecha de nacimiento">
                       </div>
+                    <?php if(isset($_SESSION['error']['fecha_nac_original'])): ?>
+                        <div id="mensaje_error">
+                            <div><?= $_SESSION['error']['fecha_nac_original'] ?></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
+  
 <!--                    <div class="form-group">
                       <label for="foto">Foto:</label>
                       <div class="input-group">
@@ -108,6 +162,9 @@
                   <div class="card-footer" id="boton_enviar">
                     <button type="submit" class="btn btn-primary" id="boton_enviar1">Registrar</button>
                   </div>
+                  <?php Helpers::borrarErrores(); ?>
+                  <?php Helpers::borrarCompletado(); ?>
+                  <?php Helpers::borrarFallido(); ?>
                 </form>
             </div>
             
