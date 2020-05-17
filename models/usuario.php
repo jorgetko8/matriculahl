@@ -71,6 +71,18 @@ class Usuario{
         $this->foto = $foto;
     }
     
-    
+    public function registrarUsuario(){
+        $sql = "INSERT INTO usuarios VALUES(null, '{$this->getDocumento_identidad()}', '{$this->getUsuario()}', "
+        . "'{$this->getPassword()}', {$this->getPrivilegio()}, {$this->getEstado()}, '{$this->getFoto()}');";
+        
+        $save = $this->db->query($sql);
+        $result = false;
+        
+        if($save){
+            $result = true;
+        }
+        
+        return $result;
+    }
     
 }

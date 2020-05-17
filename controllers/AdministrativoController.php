@@ -16,6 +16,12 @@ class AdministrativoController{
         
     }
     
+    public function listado(){
+        
+        
+        require_once 'views/administrativo/lista.php';
+    }
+    
     public function registrar(){
         
         $db = Database::conexion();
@@ -78,13 +84,14 @@ class AdministrativoController{
             
             // Datos propios de usuario
             $usuario_documento_identidad = $documento_identidad;
-            $usuario = $documento_identidad;
+            $usuario_nick = $documento_identidad;
             
             $yearnac = date("Y", strtotime($fecha_nac_original));
-
-            $password = $yearnac."".$yearnac;
+            $password_sin_enc = $yearnac."".$yearnac;
+            $password = password_hash($password_sin_enc, PASSWORD_BCRYPT, ['cost' => 4]);
             $privilegio = 2;
             $estado = 1;
+            $foto = "administrativo.jpg";
             
             // Registro de administrativo
             $administrativo = new Administrativo();
@@ -99,10 +106,25 @@ class AdministrativoController{
             
             $registrarAdministrativo = $administrativo->registrarAdministrativo();
             if($registrarAdministrativo){
+                
                 $_SESSION['completed'] = "Registro completado correctamente";
+//                $usuario = new Usuario();
+//                $usuario->setDocumento_identidad($documento_identidad);
+//                $usuario->setUsuario($usuario_nick);
+//                $usuario->setPassword($password);
+//                $usuario->setPrivilegio($privilegio);
+//                $usuario->setEstado($estado);
+//                $usuario->setFoto($foto);
+//                $registrarUsuario = $usuario->registrarUsuario();
+//                
+//                if($registrarUsuario){
+//                    $_SESSION['completed'] = "Registro completado correctamente";
+//                }else{
+//                    $_SESSION['failed'] = "Hubo un error al guardar los datos del usuario";
+//                }
             }
         }else{
-            $_SESSION['failed'] = "Hubo un error al guardar los datos";
+            $_SESSION['failed'] = "Hubo un error al guardar los datos del administrativo";
         }
         
         header("Location:".base_url.'administrativo/registro');

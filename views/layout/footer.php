@@ -20,6 +20,11 @@
 <script src="<?=base_url?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="<?=base_url?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- DataTables -->
+<script src="<?=base_url?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?=base_url?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?=base_url?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?=base_url?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
 <!-- bs-custom-file-input -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
@@ -35,6 +40,23 @@
 $(document).ready(function () {
   bsCustomFileInput.init();
 });
+</script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 </script>
 
 </body>
