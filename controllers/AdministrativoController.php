@@ -1,7 +1,6 @@
 <?php
 
 require_once 'models/administrativo.php';
-require_once 'models/usuario.php';
 
 class AdministrativoController{
     
