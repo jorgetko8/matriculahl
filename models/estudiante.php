@@ -16,6 +16,11 @@ class Estudiante{
     private $distrito;
     private $discapacidad;
     private $tipo_discapacidad;
+    private $usuario;
+    private $password;
+    private $privilegio;
+    private $estado;
+    private $foto;
     private $db;
     
     public function __construct(){
@@ -77,6 +82,26 @@ class Estudiante{
     function getTipo_discapacidad() {
         return $this->tipo_discapacidad;
     }
+    
+    function getUsuario() {
+        return $this->usuario;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
+    function getPrivilegio() {
+        return $this->privilegio;
+    }
+
+    function getEstado() {
+        return $this->estado;
+    }
+
+    function getFoto() {
+        return $this->foto;
+    }
 
     function setDocumento_identidad($documento_identidad) {
         $this->documento_identidad = $documento_identidad;
@@ -133,7 +158,27 @@ class Estudiante{
     function setTipo_discapacidad($tipo_discapacidad) {
         $this->tipo_discapacidad = $tipo_discapacidad;
     }
-    
-    
+
+    function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
+    function setPrivilegio($privilegio) {
+        $this->privilegio = $privilegio;
+    }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+    function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
+
     
 }

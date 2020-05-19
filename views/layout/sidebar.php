@@ -19,7 +19,6 @@
           <a href="#" class="d-block">Jorge Torres R.</a>
         </div>
       </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -27,7 +26,7 @@
                with font-awesome or any other icon font library -->
           
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" <?php echo isset($_SESSION['adm'])? "class='nav-link active'" : "class='nav-link'" ?>>
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Administrativos
@@ -36,17 +35,48 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url?>administrativo/registro" class="nav-link active">
+                <a href="<?=base_url?>administrativo/registro"  <?php echo isset($_SESSION['adm']['registro_adm'])? "class='nav-link active'" : "class='nav-link'" ?>>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Registrar nuevo</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/advanced.html" class="nav-link">
+                <a href="<?=base_url?>administrativo/listado" <?php echo isset($_SESSION['adm']['listar_adm'])? "class='nav-link active'" : "class='nav-link'" ?>>
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Advanced Elements</p>
+                  <p>Listar administrativos</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../forms/editors.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Editors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../forms/validation.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Validation</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" <?php echo isset($_SESSION['adm'])? "class='nav-link active'" : "class='nav-link'" ?>>
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Cuentas de Usuarios
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url?>usuario/adminpend"  <?php echo isset($_SESSION['adm']['registro_adm'])? "class='nav-link active'" : "class='nav-link'" ?>>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin. Pendientes</p>
+                </a>
+              </li>
+              
               <li class="nav-item">
                 <a href="../forms/editors.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -256,3 +286,4 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+<?php unset($_SESSION['adm']);?>

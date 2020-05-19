@@ -18,13 +18,14 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
+    <?php if(isset($administrativos)): ?>
+    
     <section class="content">
         <div class="row">
             <div class="col-12">
                 
                 <!-- Contenedor de la tabla -->
-                <div class="card">
+                <div class="card card-primary">
                     <!-- Cabecera del contenedor de la tabla -->
                     <div class="card-header">
                         <h3 class="card-title">Lista de resultados</h3>
@@ -34,6 +35,7 @@
                     <!-- Inicio de la tabla -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
+                            
                             <thead>
                                 <tr>
                                     <th>N° de Documento</th>
@@ -46,18 +48,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php while($admi = $administrativos->fetch_object()): ?>
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
-                                    <td>X</td>
+                                    <td><?=$admi->documento_identidad?></td>
+                                    <td><?=$admi->tipo_documento?></td>
+                                    <td><?=$admi->ape_paterno?></td>
+                                    <td><?=$admi->ape_materno?></td>
+                                    <td><?=$admi->nombres?></td>
+                                    <td><?=$admi->correo?></td>
+                                    <td><?=$admi->celular?></td>
+                                    
                                 </tr>
-
+                                <?php endwhile; ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -70,6 +72,7 @@
                                     <th>Celular</th>
                                 </tr>
                             </tfoot>
+                            
                         </table>
                     </div>
                     <!-- Fin de la tabla -->
@@ -81,6 +84,7 @@
         </div>
         <!-- /.row -->
     </section>
-
+    
+    <?php endif; ?>
 </div>
 <?php require_once 'views/layout/footer.php'; ?>

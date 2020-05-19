@@ -10,7 +10,14 @@ class AdministrativoController{
         require_once 'views/administrativo/menu.php';
     }
     
+    public function login(){
+        
+        require_once 'views/administrativo/login.php';
+    }
+    
     public function registro(){
+        
+        $_SESSION['adm']['registro_adm'] = true;
         
         require_once 'views/administrativo/registro.php';
         
@@ -18,6 +25,9 @@ class AdministrativoController{
     
     public function listado(){
         
+        $administrativo = new Administrativo();
+        $administrativos = $administrativo->obtenerLista();
+        $_SESSION['adm']['listar_adm'] = true;
         
         require_once 'views/administrativo/lista.php';
     }
@@ -103,25 +113,17 @@ class AdministrativoController{
             $administrativo->setCorreo($correo);
             $administrativo->setCelular($celular);
             $administrativo->setFecha_nac($fecha_nac);
-            
+            $administrativo->setUsuario($usuario_nick);
+            $administrativo->setPassword($password);
+            $administrativo->setPrivilegio($privilegio);
+            $administrativo->setEstado($estado);
+            $administrativo->setFoto($foto);            
             $registrarAdministrativo = $administrativo->registrarAdministrativo();
+            
             if($registrarAdministrativo){
                 
                 $_SESSION['completed'] = "Registro completado correctamente";
-//                $usuario = new Usuario();
-//                $usuario->setDocumento_identidad($documento_identidad);
-//                $usuario->setUsuario($usuario_nick);
-//                $usuario->setPassword($password);
-//                $usuario->setPrivilegio($privilegio);
-//                $usuario->setEstado($estado);
-//                $usuario->setFoto($foto);
-//                $registrarUsuario = $usuario->registrarUsuario();
-//                
-//                if($registrarUsuario){
-//                    $_SESSION['completed'] = "Registro completado correctamente";
-//                }else{
-//                    $_SESSION['failed'] = "Hubo un error al guardar los datos del usuario";
-//                }
+
             }
         }else{
             $_SESSION['failed'] = "Hubo un error al guardar los datos del administrativo";

@@ -29,6 +29,7 @@
 <!-- bs-custom-file-input -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
 
+<!-- Propios -->
 <script src="<?=base_url?>assets/js/mascara.js"></script>
 
 <!-- AdminLTE App -->
