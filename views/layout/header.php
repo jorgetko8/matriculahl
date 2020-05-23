@@ -10,7 +10,9 @@
   <!-- Mis estilos -->
   <link rel="stylesheet" href="<?=base_url?>assets/css/misestilos.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?=base_url?>assets/plugins/fontawesome-free/css/all.min.css">
+  <!--<link rel="stylesheet" href="<?=base_url?>assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Font Awesome5 -->
+  <link rel="stylesheet" href="<?=base_url?>assets/plugins/fontawesome-free-5/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->

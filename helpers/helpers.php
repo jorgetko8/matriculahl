@@ -20,4 +20,16 @@ class Helpers {
         }
     }
 
+    public static function noSession(){
+        if(!isset($_SESSION['identity'])){
+            header("Location:".base_url);
+        }
+    }
+
+    public static function noAdmin(){
+        if(!isset($_SESSION['admin'])){
+            header("Location:".base_url);
+        }
+    }
+
 }
