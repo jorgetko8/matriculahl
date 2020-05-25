@@ -34,7 +34,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="<?=base_url?>administrativo/registrar" method="POST">
+                <form role="form" action="<?=base_url?>administrativo/registrar" method="POST" enctype="multipart/form-data">
                     <?php if(isset($_SESSION['completed'])): ?>
                         <div id="mensaje_completado">
                             <div><?= $_SESSION['completed'] ?></div>
@@ -143,18 +143,15 @@
                     <?php endif; ?>
                     </div>
   
-<!--                    <div class="form-group">
+                    <div class="form-group">
                       <label for="foto">Foto:</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="">Upload</span>
+                          <input type="file" class="custom-file-input" name="foto">
+                          <label class="custom-file-label" for="">Elegir foto...</label>
                         </div>
                       </div>
-                    </div>-->
+                    </div>
 
                   </div>
                   <!-- /.card-body -->

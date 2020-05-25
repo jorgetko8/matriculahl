@@ -34,7 +34,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="<?=base_url?>administrativo/actualizar" method="POST">
+                <form role="form" action="<?=base_url?>administrativo/actualizar" method="POST" enctype="multipart/form-data">
                     
                     <?php if(isset($_SESSION['completed'])): ?>
                         <div id="mensaje_completado">
@@ -160,18 +160,20 @@
                     <?php endif; ?>
                     </div>
   
-<!--                    <div class="form-group">
+                    <div class="form-group">
                       <label for="foto">Foto:</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="">Upload</span>
+                          <input type="file" class="custom-file-input" name="foto">
+                          <label class="custom-file-label" for="">Elegir imagen...</label>
                         </div>
                       </div>
-                    </div>-->
+                    </div>
+                    <?php if(isset($admin) && is_object($admin) && !empty($admin->foto)): ?>
+                          <div class="form-group">
+                              <img src="<?=base_url?>uploads/administrativo/imagenes/<?=$admin->foto?>" class="estampilla" />
+                          </div>
+                    <?php endif; ?>
 
                   </div>
                   <!-- /.card-body -->

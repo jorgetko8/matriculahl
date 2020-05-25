@@ -218,26 +218,35 @@ distrito varchar(20),
 discapacidad varchar(2) not null,
 tipo_discapacidad varchar(20),
 fecha_reg date,
+correo varchar(25) not null,
 usuario varchar(13) not null,
 password varchar(100) not null,
 privilegio int(1) not null,
 estado int(1) not null,
 foto varchar(50),
+direcciondom varchar(100) not null,
+lugardom varchar(50),
+departamentodom varchar(50),
+provinciadom varchar(50),
+distritodom varchar(50),
+telefonodom varchar(11),
 CONSTRAINT pk_estudiantes PRIMARY KEY(documento_identidad)
 )Engine=InnoDB;
 
+/*
 CREATE TABLE estudiantes_domicilios(
 id int(20) auto_increment not null,
 estudiante_doc varchar(13) not null,
-direccion varchar(100) not null,
-lugar varchar(50),
-departamento varchar(50),
-provincia varchar(50),
-distrito varchar(50),
-telefono varchar(11),
+direcciondom varchar(100) not null,
+lugardom varchar(50),
+departamentodom varchar(50),
+provinciadom varchar(50),
+distritodom varchar(50),
+telefonodom varchar(11),
 CONSTRAINT pk_estudiantes_domicilios PRIMARY KEY(id),
 CONSTRAINT fk_estudiantes_domicilios FOREIGN KEY(estudiante_doc) REFERENCES estudiantes(documento_identidad) ON UPDATE CASCADE
 )Engine=InnoDB;
+*/
 
 CREATE TABLE apoderados(
 documento_identidad varchar(13) not null,

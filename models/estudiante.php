@@ -21,6 +21,13 @@ class Estudiante{
     private $privilegio;
     private $estado;
     private $foto;
+    private $correo;
+    private $direcciondom;
+    private $lugardom;
+    private $departamentodom;
+    private $provinciadom;
+    private $distritodom;
+    private $telefonodom;
     private $db;
     
     public function __construct(){
@@ -103,6 +110,34 @@ class Estudiante{
         return $this->foto;
     }
 
+    function getCorreo(){
+        return $this->correo;
+    }
+
+    function getDirecciondom(){
+        return $this->direcciondom;
+    }
+
+    function getLugardom(){
+        return $this->lugardom;
+    }
+
+    function getDepartamentodom(){
+        return $this->departamentodom;
+    }
+
+    function getProvinciadom(){
+        return $this->provinciadom;
+    }
+
+    function getDistritodom(){
+        return $this->distritodom;
+    }
+
+    function getTelefonodom(){
+        return $this->telefonodom;
+    }
+
     function setDocumento_identidad($documento_identidad) {
         $this->documento_identidad = $documento_identidad;
     }
@@ -179,6 +214,50 @@ class Estudiante{
         $this->foto = $foto;
     }
 
+    function setCorreo($correo){
+        $this->correo = $correo;
+    }
 
+    function setDirecciondom($direcciondom){
+        $this->direcciondom = $direcciondom;
+    }
+
+    function setLugardom($lugardom){
+        $this->lugardom = $lugardom;
+    }
+
+    function setDepartamentodom($departamentodom){
+        $this->departamentodom = $departamentodom;
+    }
+
+    function setProvinciadom($provinciadom){
+        $this->provinciadom = $provinciadom;
+    }
+
+    function setDistritodom($distritodom){
+        $this->distritodom = $distritodom;
+    }
+
+    function setTelefonodom($telefono){
+        $this->telefonodom = $telefono;
+    }
+
+
+
+    public function registrarEstudiante(){
+
+        $sql = "INSERT INTO estudiantes VALUES('{$this->getDocumento_identidad()}', '{$this->getTipo_documento()}', '{$this->getNombres()}', '{$this->getApe_paterno()}', '{$this->getApe_materno()}', '{$this->getSexo()}', '{$this->getFecha_nac()}', '{$this->getReligion()}', '{$this->getPais()}', '{$this->getDepartamento()}', '{$this->getProvincia()}', '{$this->getDistrito()}', '{$this->getDiscapacidad()}', '{$this->getTipo_discapacidad()}', CURDATE(),'{$this->getCorreo()}' ,'{$this->getUsuario()}', '{$this->getPassword()}', {$this->getPrivilegio()}, {$this->getEstado()}, '{$this->getFoto()}', '{$this->getDirecciondom()}', '{$this->getLugardom()}', '{$this->getDepartamentodom()}', '{$this->getProvinciadom()}', '{$this->getDistritodom()}', '{$this->getTelefonodom()}');";
+
+        $insert =  $this->db->query($sql);
+   
+        $result = false;
+
+        if($insert){
+            $result = true;
+        }
+
+        return $result;
+
+    }
     
 }

@@ -20,6 +20,12 @@ class Helpers {
         }
     }
 
+    public static function borrarForm() {
+        if(isset($_SESSION['form'])) {
+           unset($_SESSION['form']);
+        }
+    }
+
     public static function noSession(){
         if(!isset($_SESSION['identity'])){
             header("Location:".base_url);

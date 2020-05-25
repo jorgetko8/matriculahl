@@ -122,7 +122,7 @@ class AdministrativoController {
             $password = password_hash($password_sin_enc, PASSWORD_BCRYPT, ['cost' => 4]);
             $privilegio = 2;
             $estado = 1;
-            $foto = "administrativo.jpg";
+            
 
             // Registro de administrativo
             $administrativo = new Administrativo();
@@ -138,7 +138,30 @@ class AdministrativoController {
             $administrativo->setPassword($password);
             $administrativo->setPrivilegio($privilegio);
             $administrativo->setEstado($estado);
-            $administrativo->setFoto($foto);
+
+            // Guardar la imagen
+                if(isset($_FILES['foto'])){
+                
+                    $file = $_FILES['foto'];
+                    $filename = $file['name'];
+                    $mimetype = $file['type'];
+                    
+                    $nombreUnico = $documento_identidad.'_'.$filename;
+
+                    if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif"){
+
+                        if(!is_dir('uploads/administrativo/imagenes')){
+                            mkdir('uploads/administrativo/imagenes', 0777, true);
+                        }
+
+                        move_uploaded_file($file['tmp_name'], 'uploads/administrativo/imagenes/'.$nombreUnico);
+                        $administrativo->setFoto($nombreUnico);
+
+
+                    }else{
+                        $_SESSION['error']['foto'] = "El formato de la imagen no es valido";
+                    }
+                }
             
             
             $registrarAdministrativo = $administrativo->registrarAdministrativo();
@@ -153,6 +176,8 @@ class AdministrativoController {
             header("Location:" . base_url . 'administrativo/registro');
 
         }
+
+        header("Location:" . base_url . 'administrativo/registro');
     }
 
     public function logear() {
@@ -226,7 +251,7 @@ class AdministrativoController {
         $fecha_nac_original = isset($_POST['fecha_nac']) ? mysqli_real_escape_string($db, trim($_POST['fecha_nac'])) : false;
         $estado = isset($_POST['estado']) ? mysqli_real_escape_string($db, trim($_POST['estado'])) : false;
         $documento_identidad = isset($_POST['documento_identidad']) ? trim($_POST['documento_identidad']) : false;
-
+        $fotoActual = $_SESSION['identity']->foto;
         if (is_numeric($nombres) || preg_match("/[0-9]/", $nombres) || strlen($nombres) > 50) {
             $_SESSION['error']['nombre'] = "Ingrese valores validos en el campo nombres(max. 30 caracteres)";
         } elseif (!$nombres) {
@@ -277,7 +302,6 @@ class AdministrativoController {
             $password = password_hash($password_sin_enc, PASSWORD_BCRYPT, ['cost' => 4]);
             $privilegio = 2;
 */
-            $foto = "administrativo.jpg";
 
             // Registro de administrativo
             $administrativo = new Administrativo();
@@ -290,14 +314,45 @@ class AdministrativoController {
             $administrativo->setCelular($celular);
             $administrativo->setFecha_nac($fecha_nac);
             $administrativo->setEstado($estado);
-            $administrativo->setFoto($foto);
-            $administrativo->setEstado($estado);
+
+            // Guardar la imagen
+                if(isset($_FILES['foto']) && $_FILES['foto']['name'] != ''){
+                
+                    $file = $_FILES['foto'];
+                    $filename = $file['name'];
+                    $mimetype = $file['type'];
+                    
+                    $nombreUnico = $documento_identidad.'_'.$filename;
+
+                    if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif"){
+
+                        if(!is_dir('uploads/administrativo/imagenes')){
+                            mkdir('uploads/administrativo/imagenes', 0777, true);
+                        }
+
+                        move_uploaded_file($file['tmp_name'], 'uploads/administrativo/imagenes/'.$nombreUnico);
+                        $administrativo->setFoto($nombreUnico);
+
+
+                    }else{
+                        $_SESSION['error']['foto'] = "El formato de la imagen no es valido";
+                    }
+                }else{
+                    $administrativo->setFoto($fotoActual);
+                }
             
-            
+
             $modificarAdmin = $administrativo->modificarAdministrativo();
             if ($modificarAdmin) {
 
                 $_SESSION['completed'] = "Se actualizaron los datos correctamente";
+
+                // Actualizar datos de session actual
+                if($_SESSION['identity']->documento_identidad == $documento_identidad){
+                    $_SESSION['identity']->nombres = $nombres;
+                    $_SESSION['identity']->ape_paterno = $ape_paterno;
+                    $_SESSION['identity']->foto = $administrativo->getFoto();
+                }
 
             } else {
                 $_SESSION['failed'] = "Hubo un error al actualizar los datos del administrativo";

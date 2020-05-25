@@ -181,7 +181,8 @@ class Administrativo {
     }
 
     public function modificarAdministrativo(){
-        $sql = "UPDATE administrativos SET nombres='{$this->getNombres()}', ape_paterno='{$this->getApe_paterno()}', ape_materno='{$this->getApe_materno()}', correo='{$this->getCorreo()}', fecha_nac='{$this->fecha_nac}', estado={$this->getEstado()} WHERE documento_identidad='{$this->getDocumento_identidad()}';";
+
+        $sql = "UPDATE administrativos SET nombres='{$this->getNombres()}', ape_paterno='{$this->getApe_paterno()}', ape_materno='{$this->getApe_materno()}', correo='{$this->getCorreo()}', fecha_nac='{$this->getfecha_nac()}', estado={$this->getEstado()}, foto='{$this->getFoto()}' WHERE documento_identidad='{$this->getDocumento_identidad()}';";
 
         $query = $this->db->query($sql);
         
