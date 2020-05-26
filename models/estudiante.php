@@ -259,5 +259,52 @@ class Estudiante{
         return $result;
 
     }
+
+    public function actualizarEstudiante(){
+
+        $sql = "UPDATE estudiantes SET nombres='{$this->getNombres()}', ape_paterno='{$this->getApe_paterno()}', ape_materno='{$this->getApe_materno()}', sexo='{$this->getSexo()}', fecha_nac='{$this->getFecha_nac()}', religion='{$this->getReligion()}', pais='{$this->getPais()}', departamento='{$this->getDepartamento()}', provincia='{$this->getProvincia()}', distrito='{$this->getDistrito()}', discapacidad='{$this->getDiscapacidad()}', tipo_discapacidad='{$this->getTipo_discapacidad()}', direcciondom='{$this->getDirecciondom()}', lugardom='{$this->getLugardom()}', departamentodom='{$this->getDepartamentodom()}', provinciadom='{$this->getProvinciadom()}', distritodom='{$this->getDistritodom()}', telefonodom='{$this->getTelefonodom()}';";
+
+        $query = $this->db->query($sql);
+
+        $result = false;
+
+        if($query){
+            $result = true;
+        }
+
+        return $result;
+
+    }
+
+    public function obtenerLista(){
+
+        $sql = "SELECT * FROM estudiantes";
+
+        $query = $this->db->query($sql);
+
+        $result = false;
+        if($query){
+            $result = $query;
+        }
+
+        return $result;
+
+    }
+
+    public function estudianteById(){
+
+        $sql = "SELECT * FROM estudiantes WHERE documento_identidad='{$this->getDocumento_identidad()}';";
+
+        $query = $this->db->query($sql);
+
+        $result = false;
+
+        if($query){
+            $result = $query;
+        }
+
+        return $result;
+
+    }
     
 }

@@ -54,7 +54,7 @@
 
           <!---- MENU ESTUDIANTES --->
            <li class="nav-item has-treeview menu-open">
-            <a href="#" class='nav-link'>
+            <a href="#" <?php echo isset($_SESSION['estud'])? "class='nav-link active'" : "class='nav-link'" ?>>
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Estudiantes
@@ -63,9 +63,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url?>estudiante/registro" class='nav-link'>
+                <a href="<?=base_url?>estudiante/registro" <?php echo isset($_SESSION['estud']['registro_estud'])? "class='nav-link active'" : "class='nav-link'" ?>>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Registrar nuevo</p>
+                </a>
+              </li>
+              
+            </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url?>estudiante/listado" <?php echo isset($_SESSION['estud']['listar_estud'])? "class='nav-link active'" : "class='nav-link'" ?>>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listar estudiantes</p>
                 </a>
               </li>
               
@@ -82,3 +92,4 @@
     <!-- /.sidebar -->
   </aside>
   <?php unset($_SESSION['adm']);?>
+  <?php unset($_SESSION['estud']);?>

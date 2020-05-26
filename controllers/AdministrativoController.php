@@ -250,7 +250,7 @@ class AdministrativoController {
         $correo = isset($_POST['correo']) ? mysqli_real_escape_string($db, trim($_POST['correo'])) : false;
         $fecha_nac_original = isset($_POST['fecha_nac']) ? mysqli_real_escape_string($db, trim($_POST['fecha_nac'])) : false;
         $estado = isset($_POST['estado']) ? mysqli_real_escape_string($db, trim($_POST['estado'])) : false;
-        $documento_identidad = isset($_POST['documento_identidad']) ? trim($_POST['documento_identidad']) : false;
+//        $documento_identidad = isset($_POST['documento_identidad']) ? trim($_POST['documento_identidad']) : false;
         $fotoActual = $_SESSION['identity']->foto;
         if (is_numeric($nombres) || preg_match("/[0-9]/", $nombres) || strlen($nombres) > 50) {
             $_SESSION['error']['nombre'] = "Ingrese valores validos en el campo nombres(max. 30 caracteres)";
