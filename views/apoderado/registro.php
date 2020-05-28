@@ -46,9 +46,37 @@
                         </div>
                     <?php endif; ?>
 
-                  <div class="card-body">
+
+                  <div class="card-body">                  
+             
+            <!--   <?php
+                   // var_dump($estud);
+                   // var_dump($form);
+                  ?>  -->
+
+                  <!-- Este campo solo se mostrara cuando se envie id de la tabla -->
+                    <?php if(isset($estud)): ?>
+                      <div class="alert alert-info" role="alert">
+                        <h3>Estudiante:  <?= isset($estud)? $estud->nombres." ".$estud->ape_paterno." ".$estud->ape_materno : ''; ?> </h3>
+                        <h3>N° Doc.:  <?= isset($estud)? $estud->documento_identidad : ''; ?> </h3>  
+                      </div>
+                      <?php $nombre_completo = $estud->nombres." ".$estud->ape_paterno." ".$estud->ape_materno; ?>
+                      <input type="hidden" name="nombre_completo" value="<?= isset($estud)? $nombre_completo : ''; ?>">
+                      <input type="hidden" name="estudiante_doc" value="<?= isset($estud)? $estud->documento_identidad : ''; ?>">
+
+                  <!-- Este campo solo se mostrara cuando falle el registro, para conservar los datos anteriores --> 
+                    <?php elseif (isset($form)): ?>
+                      <div class="alert alert-info" role="alert">
+                        <h3>Estudiante:  <?= isset($form)? $form['nombre_completo'] : ''; ?> </h3>
+                        <h3>N° Doc.:  <?= isset($form)? $form['estudiante_doc'] : ''; ?> </h3>  
+                      </div>
+                      <input type="hidden" name="nombre_completo" value="<?= isset($form['nombre_completo'])? $form['nombre_completo'] : ''; ?>">
+                      <input type="hidden" name="estudiante_doc" value="<?= isset($form['estudiante_doc'])? $form['estudiante_doc'] : ''; ?>">
+                    <?php endif; ?>
+                  <!-- FIN DEL if -->
+                  
                     <div class="form-group">
-                      <label for="nombres">Nombres:</label>
+                      <label for="nombres">Nombres del apoderado:</label>
                       <input type="text" class="form-control" name="nombres" placeholder="Ingrese sus nombres"  value="<?= isset($form)? $form['nombres'] : ''; ?>">
                     <?php if(isset($_SESSION['error']['nombre'])): ?>
                         <div id="mensaje_error">
@@ -97,87 +125,6 @@
                     </div>
 
                     <div class="form-group">
-                          <label for="sexo">Sexo:</label>
-                          <select class="custom-select" name="sexo">
-                            <option value="masculino"  <?= isset($form) && $form['sexo'] == "masculino"? 'selected' : ''; ?>>MASCULINO</option>
-                            <option value="femenino"  <?= isset($form) && $form['sexo'] == "femenino"? 'selected' : ''; ?>>FEMENINO/option>
-                          </select>
-                    </div>
-                      
-                    <div class="form-group">
-                      <label for="tipo">Tipo:</label>
-                      <input type="text" class="form-control" name="tipo" value="Estudiante" disabled="disabled">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="religion">Religion:</label>
-                      <input type="text" class="form-control" name="religion" placeholder="Ingrese su religion"  value="<?= isset($form)? $form['religion'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['religion'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['religion'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="paisnac">Pais de nacimiento:</label>
-                      <input type="text" class="form-control" name="paisnac" placeholder="Ingrese su pais de nacimiento" value="<?= isset($form)? $form['paisnac'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['paisnac'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['paisnac'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="departamentonac">Departamento de nacimiento:</label>
-                      <input type="text" class="form-control" name="departamentonac" placeholder="Ingrese su departamento de nacimiento" value="<?= isset($form)? $form['departamentonac'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['departamentonac'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['departamentonac'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="provincianac">Provincia de nacimiento:</label>
-                      <input type="text" class="form-control" name="provincianac" placeholder="Ingrese su provincia de nacimiento" value="<?= isset($form)? $form['provincianac'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['provincianac'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['provincianac'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="distritonac">Distrito de nacimiento:</label>
-                      <input type="text" class="form-control" name="distritonac" placeholder="Ingrese su distrito de nacimiento" value="<?= isset($form)? $form['distritonac'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['distritonac'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['distritonac'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                          <label for="discapacidad">Discapacidad:</label>
-                          <select class="custom-select" name="discapacidad">
-                            <option value="no" <?= isset($form) && $form['discapacidad'] == "no"? 'selected' : ''; ?>>NO TIENE</option>
-                            <option value="si" <?= isset($form) && $form['discapacidad'] == "si"? 'selected' : ''; ?>>SI TIENE</option>
-                          </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="tipodiscapacidad">(*)Tipo de discapacidad:</label>
-                      <input type="text" class="form-control" name="tipodiscapacidad" placeholder="Ingrese tipo de discapacidad" value="<?= isset($form)? $form['tipodiscapacidad'] : '-'; ?>">
-                    <?php if(isset($_SESSION['error']['tipodiscapacidad'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['tipodiscapacidad'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
                       <label for="fecha_nac">Fecha de nacimiento:</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -193,61 +140,49 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="direcciondom">Direccion de domicilio:</label>
-                      <input type="text" class="form-control" name="direcciondom" placeholder="Ingrese su Direccion de domicilio" value="<?= isset($form)? $form['direcciondom'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['direcciondom'])): ?>
+                      <label for="grado_instruccion">Grado de instrucción:</label>
+                      <input type="text" class="form-control" name="grado_instruccion" placeholder="Ingrese su grado de instrucción"  value="<?= isset($form)? $form['grado_instruccion'] : ''; ?>">
+                    <?php if(isset($_SESSION['error']['grado_instruccion'])): ?>
                         <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['direcciondom'] ?></div>
+                            <div><?= $_SESSION['error']['grado_instruccion'] ?></div>
                         </div>
                     <?php endif; ?>
                     </div>
 
                     <div class="form-group">
-                      <label for="lugardom">Lugar de domicilio:</label>
-                      <input type="text" class="form-control" name="lugardom" placeholder="Ingrese su Lugar de domicilio" value="<?= isset($form)? $form['lugardom'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['lugardom'])): ?>
+                      <label for="ocupacion">Ocupación:</label>
+                      <input type="text" class="form-control" name="ocupacion" placeholder="Ingrese su Ocupación"  value="<?= isset($form)? $form['ocupacion'] : ''; ?>">
+                    <?php if(isset($_SESSION['error']['ocupacion'])): ?>
                         <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['lugardom'] ?></div>
+                            <div><?= $_SESSION['error']['ocupacion'] ?></div>
                         </div>
                     <?php endif; ?>
                     </div>
 
                     <div class="form-group">
-                      <label for="departamentodom">Departamento de domicilio:</label>
-                      <input type="text" class="form-control" name="departamentodom" placeholder="Ingrese su Departamento de domicilio" value="<?= isset($form)? $form['departamentodom'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['departamentodom'])): ?>
+                          <label for="vive_con_estudiante">Vive con estudiante:</label>
+                          <select class="custom-select" name="vive_con_estudiante">
+                            <option value="SI"  <?= isset($form) && $form['vive_con_estudiante'] == "SI"? 'selected' : ''; ?>>SI</option>
+                            <option value="NO" <?= isset($form) && $form['vive_con_estudiante'] == "NO"? 'selected' : ''; ?>>NO</option>
+                          </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="religion">Religión:</label>
+                      <input type="text" class="form-control" name="religion" placeholder="Ingrese su Religión"  value="<?= isset($form)? $form['religion'] : ''; ?>">
+                    <?php if(isset($_SESSION['error']['religion'])): ?>
                         <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['departamentodom'] ?></div>
+                            <div><?= $_SESSION['error']['religion'] ?></div>
                         </div>
                     <?php endif; ?>
                     </div>
 
                     <div class="form-group">
-                      <label for="provinciadom">Provincia de domicilio:</label>
-                      <input type="text" class="form-control" name="provinciadom" placeholder="Ingrese su Provincia de domicilio" value="<?= isset($form)? $form['provinciadom'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['provinciadom'])): ?>
+                      <label for="celular">Celular:</label>
+                      <input type="text" class="form-control" id="telefono" name="celular" placeholder="Ingrese su celular" value="<?= isset($form)? $form['celular'] : ''; ?>">
+                    <?php if(isset($_SESSION['error']['celular'])): ?>
                         <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['provinciadom'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="distritodom">Distrito de domicilio:</label>
-                      <input type="text" class="form-control" name="distritodom" placeholder="Ingrese su Distrito de domicilio" value="<?= isset($form)? $form['distritodom'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['distritodom'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['distritodom'] ?></div>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="telefonodom">Telefono de domicilio:</label>
-                      <input type="text" class="form-control" name="telefonodom" placeholder="Ingrese su Telefono de domicilio" value="<?= isset($form)? $form['telefonodom'] : ''; ?>">
-                    <?php if(isset($_SESSION['error']['telefonodom'])): ?>
-                        <div id="mensaje_error">
-                            <div><?= $_SESSION['error']['telefonodom'] ?></div>
+                            <div><?= $_SESSION['error']['celular'] ?></div>
                         </div>
                     <?php endif; ?>
                     </div>
@@ -260,16 +195,6 @@
                             <div><?= $_SESSION['error']['correo'] ?></div>
                         </div>
                     <?php endif; ?>
-                    </div>
-  
-                    <div class="form-group">
-                      <label for="foto">Foto:</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="foto">
-                          <label class="custom-file-label" for="">Elegir foto...</label>
-                        </div>
-                      </div>
                     </div>
 
                   </div>

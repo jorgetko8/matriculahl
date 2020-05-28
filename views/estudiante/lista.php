@@ -64,7 +64,7 @@
 													</i>
 													Modificar
 												</a>
-												<a class="btn btn-info btn-sm" href="<?=base_url?>estudiante/modificacion&id=<?=$estud->documento_identidad?>">
+												<a class="btn btn-info btn-sm" href="<?=base_url?>apoderado/registro&id=<?=$estud->documento_identidad?>">
 													<i class="fas fa-user-plus">
 													</i>
 													Apoderado

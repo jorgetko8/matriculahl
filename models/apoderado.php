@@ -1,6 +1,6 @@
 <?php
 
-class Apoderados{
+class Apoderado{
     
     private $documento_identidad;
     private $tipo_documento;
@@ -12,7 +12,7 @@ class Apoderados{
     private $ocupacion;
     private $vive_con_estudiante;
     private $religion;
-    private $coreo;
+    private $correo;
     private $celular;
     private $db;
     
@@ -60,8 +60,8 @@ class Apoderados{
         return $this->religion;
     }
 
-    function getCoreo() {
-        return $this->coreo;
+    function getCorreo() {
+        return $this->correo;
     }
 
     function getCelular() {
@@ -108,12 +108,28 @@ class Apoderados{
         $this->religion = $religion;
     }
 
-    function setCoreo($coreo) {
-        $this->coreo = $coreo;
+    function setCorreo($correo) {
+        $this->correo = $correo;
     }
 
     function setCelular($celular) {
         $this->celular = $celular;
+    }
+
+    public function registrarApoderado(){
+
+        $sql = "INSERT INTO apoderados VALUES('{$this->getDocumento_identidad()}', '{$this->getTipo_documento()}', '{$this->getNombres()}', '{$this->getApe_paterno()}', '{$this->getApe_materno()}', '{$this->getFecha_nac()}', '{$this->getGrado_instruccion()}', '{$this->getOcupacion()}', '{$this->getVive_con_estudiante()}', '{$this->getReligion()}', '{$this->getCorreo()}', '{$this->getCelular()}', CURDATE());";
+
+        $query = $this->db->query($sql);
+        
+        $result = false;
+
+        if($query){
+            $result = true;
+        }
+
+        return $result;
+
     }
     
     
